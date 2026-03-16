@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "B": {
+      "item": "enderio:conduit_binder"
+    },
+    "C": [],
+    "I": {
+      "item": "enderio_endergy:melodic_alloy_ingot"
+    }
+  },
+  "pattern": [
+    "BBB",
+    "ICI",
+    "BBB"
+  ],
+  "result": {
+    "count": 8,
+    "item": "minecraft:air"
+  },
+  "show_notification": true
+}
