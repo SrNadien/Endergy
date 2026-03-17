@@ -23,9 +23,19 @@ public class EndergyLanguageProvider extends LanguageProvider {
         addItems();
         addBlocks();
         addCommonLang();
+        addTooltips();
     }
 
     private void addConduitDescriptions() {
+        add("item.enderio_endergy.crude_energy",       "Crude Energy Conduit");
+        add("item.enderio_endergy.copper_energy",      "Copper Energy Conduit");
+        add("item.enderio_endergy.iron_energy",        "Iron Energy Conduit");
+        add("item.enderio_endergy.gold_energy",        "Gold Energy Conduit");
+        add("item.enderio_endergy.crystalline_energy", "Crystalline Energy Conduit");
+        add("item.enderio_endergy.melodic_energy",     "Melodic Energy Conduit");
+        add("item.enderio_endergy.stellar_energy",     "Stellar Energy Conduit");
+
+        
         add(EndergyConduits.CRUDE_ENERGY,       "Crude Energy Conduit");
         add(EndergyConduits.COPPER_ENERGY,      "Copper Energy Conduit");
         add(EndergyConduits.IRON_ENERGY,        "Iron Energy Conduit");
@@ -33,6 +43,17 @@ public class EndergyLanguageProvider extends LanguageProvider {
         add(EndergyConduits.CRYSTALLINE_ENERGY, "Crystalline Energy Conduit");
         add(EndergyConduits.MELODIC_ENERGY,     "Melodic Energy Conduit");
         add(EndergyConduits.STELLAR_ENERGY,     "Stellar Energy Conduit");
+    }
+
+    private void addTooltips() {
+        add("tooltip.enderio_endergy.transfer_rate", "Transfer Rate: %s FE/t");
+        add("conduit.enderio_endergy.crude_energy.description",       "A basic energy conduit made from crude steel.");
+        add("conduit.enderio_endergy.copper_energy.description",      "A copper energy conduit with improved throughput.");
+        add("conduit.enderio_endergy.iron_energy.description",        "An iron energy conduit with solid throughput.");
+        add("conduit.enderio_endergy.gold_energy.description",        "A gold energy conduit for high-speed transfer.");
+        add("conduit.enderio_endergy.crystalline_energy.description", "A crystalline alloy conduit for advanced energy transfer.");
+        add("conduit.enderio_endergy.melodic_energy.description",     "A melodic alloy conduit for massive energy transfer.");
+        add("conduit.enderio_endergy.stellar_energy.description",     "A stellar alloy conduit capable of extreme energy transfer.");
     }
 
     private void addItems() {
@@ -75,7 +96,6 @@ public class EndergyLanguageProvider extends LanguageProvider {
         add(EndergyCommonComponents.TOTEMIC_CAPACITOR_TOOLTIP, "Can be enchanted with Efficiency to increase the modifier.");
     }
 
-   
     private void add(ResourceKey<ConduitType<?>> key, String translation) {
         add("block." + key.location().getNamespace() + "." + key.location().getPath(), translation);
     }
