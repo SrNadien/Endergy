@@ -1,13 +1,18 @@
 package com.enderio.endergy.datagen.common.data_maps;
 
+import com.enderio.base.common.init.EIORecipes;
 import com.enderio.base.data.recipe.GrindingBallRecipeProvider;
 import com.enderio.endergy.common.EnderIOEndergy;
 import com.enderio.endergy.common.init.EndergyItems;
+import com.google.gson.JsonObject;
+import net.minecraft.advancements.Advancement;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Consumer;
 
@@ -29,14 +34,60 @@ public class GrindingBallDataMapProvider extends GrindingBallRecipeProvider {
     @Override
     protected void build(Item item, float grinding, float chance, float power, int durability,
             Consumer<FinishedRecipe> recipeConsumer) {
-        recipeConsumer.accept(new FinishedGrindingBall(
-            new ResourceLocation(
-                EnderIOEndergy.MOD_ID,
-                "grindingball/" + ForgeRegistries.ITEMS.getKey(item).getPath()
-            ),
+        recipeConsumer.accept(new EndergyFinishedGrindingBall(
+            new ResourceLocation(EnderIOEndergy.MOD_ID,
+                "grindingball/" + ForgeRegistries.ITEMS.getKey(item).getPath()),
             item, grinding, chance, power, durability
         ));
     }
 
-   
+    protected static class EndergyFinishedGrindingBall implements FinishedRecipe {
+
+        private final ResourceLocation id;
+        private final Item item;
+        private final float grinding;
+        private final float chance;
+        private final float power;
+        private final int durability;
+
+        public EndergyFinishedGrindingBall(ResourceLocation id, Item item, float grinding, float chance, float power, int durability) {
+            this.id = id;
+            this.item = item;
+            this.grinding = grinding;
+            this.chance = chance;
+            this.power = power;
+            this.durability = durability;
+        }
+
+        @Override
+        public void serializeRecipeData(JsonObject json) {
+            json.addProperty("item", ForgeRegistries.ITEMS.getKey(item).toString());
+            json.addProperty("grinding", grinding);
+            json.addProperty("chance", chance);
+            json.addProperty("power", power);
+            json.addProperty("durability", durability);
+        }
+
+        @Override
+        public ResourceLocation getId() {
+            return id;
+        }
+
+        @Override
+        public RecipeSerializer<?> getType() {
+            return EIORecipes.GRINDING_BALL.serializer().get();
+        }
+
+        @Override
+        @Nullable
+        public JsonObject serializeAdvancement() {
+            return null;
+        }
+
+        @Override
+        @Nullable
+        public ResourceLocation getAdvancementId() {
+            return null;
+        }
+    }
 }

@@ -8,6 +8,7 @@ import com.enderio.endergy.common.recipes.SlicingRecipeProvider;
 import com.enderio.endergy.datagen.client.EndergyBlockStateProvider;
 import com.enderio.endergy.datagen.client.EndergyItemModelProvider;
 import com.enderio.endergy.datagen.client.EndergyLanguageProvider;
+import com.enderio.endergy.datagen.common.data_maps.GrindingBallDataMapProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.data.event.GatherDataEvent;
@@ -25,9 +26,13 @@ public class EndergyDataGen {
         provider.addSubProvider(event.includeServer(), new ConduitRecipeProvider(output));
         provider.addSubProvider(event.includeServer(), new MaterialRecipeProvider(output));
         provider.addSubProvider(event.includeServer(), new SlicingRecipeProvider(output));
+        provider.addSubProvider(event.includeServer(), new GrindingBallDataMapProvider(output));
 
         // Client
-        provider.addSubProvider(event.includeClient(), new EndergyLanguageProvider(output));
+        provider.addSubProvider(event.includeClient(), new EndergyLanguageProvider.En(output));
+        provider.addSubProvider(event.includeClient(), new EndergyLanguageProvider.EsEs(output));
+        provider.addSubProvider(event.includeClient(), new EndergyLanguageProvider.EsAr(output));
+        provider.addSubProvider(event.includeClient(), new EndergyLanguageProvider.EsMx(output));
         provider.addSubProvider(event.includeClient(), new EndergyBlockStateProvider(output, event.getExistingFileHelper()));
         provider.addSubProvider(event.includeClient(), new EndergyItemModelProvider(output, event.getExistingFileHelper()));
 

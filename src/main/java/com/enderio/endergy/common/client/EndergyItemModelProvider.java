@@ -55,14 +55,6 @@ public class EndergyItemModelProvider extends ItemModelProvider {
         blockItem(EndergyBlocks.STELLAR_ALLOY_BLOCK.get());
         blockItem(EndergyBlocks.VIVID_ALLOY_BLOCK.get());
 
-        // Conduits
-        conduitItem("crude_energy");
-        conduitItem("copper_energy");
-        conduitItem("iron_energy");
-        conduitItem("gold_energy");
-        conduitItem("crystalline_energy");
-        conduitItem("melodic_energy");
-        conduitItem("stellar_energy");
     }
 
     private void blockItem(Block block) {
@@ -75,8 +67,9 @@ public class EndergyItemModelProvider extends ItemModelProvider {
 
     private void conduitItem(String name) {
         getBuilder(name)
-            .parent(new ModelFile.UncheckedModelFile("item/generated"))
-            .texture("layer0", new ResourceLocation(EnderIOEndergy.MOD_ID, "block/conduit/" + name));
+            .parent(new ModelFile.UncheckedModelFile(
+                new ResourceLocation(EnderIOEndergy.MOD_ID, "item/" + name)
+            ));
     }
 
     public ItemModelBuilder flatBlockItem(ResourceLocation block) {

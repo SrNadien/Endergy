@@ -21,7 +21,6 @@ public class EndergyCreativeTabs {
         CreativeModeTab.builder()
             .title(Component.translatable(EndergyCommonComponents.CREATIVE_TAB_TITLE))
             .icon(() -> new ItemStack(EndergyItems.TOTEMIC_CAPACITOR.get()))
-            .withSearchBar()
             .displayItems((params, output) -> {
                 for (var entry : EndergyBlocks.ITEMS.getEntries()) {
                     output.accept(entry.get());
